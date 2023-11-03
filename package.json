@@ -17,7 +17,7 @@
     "@astrojs/vercel": "^5.1.0",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
-    "astro": "^3.4.0",
+    "astro": "^3.4.3",
     "express": "^4.18.2",
     "mongoose": "^7.6.3",
     "react": "^18.2.0",
