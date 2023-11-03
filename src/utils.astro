@@ -1,0 +1,9 @@
+---
+    export function isLoggedIn() {
+        try {
+            Astro.request.headers.get('cookie');
+        } catch (e) {
+            console.error(e);
+        }
+    }
+---

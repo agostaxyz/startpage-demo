@@ -1,0 +1,80 @@
+---
+import { Image } from 'astro:assets';
+import bg from "../assets/images/bg.png"
+
+import Clock from '../components/Clock'
+import { CurrentDate } from '../components/Date'
+
+import { navLinks, drawerLinks } from '../demoData'
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>Startpage</title>
+	</head>
+	<body class="min-h-screen bg-black text-white">
+
+		<nav class="absolute top-0 z-20
+		md:top-1/2 md:-translate-y-1/2">
+			<div class="bg-gray-700 bg-opacity-90 min-w-full flex pt-0 p-1 overflow-x-scroll rounded-none
+			md:ml-4 md:block md:rounded-xl md:w-16 md:py-1 md:min-w-0">
+			{navLinks.map((data) => 
+			<a href={data.site}>
+				<Image
+					class="min-w-[54px] w-[54px] h-[54px] rounded-full my-4 mx-2 md:mx-0"
+					src={data.img}
+					alt={data.name}
+					width={100}
+					height={100}
+					decoding="async"
+					loading="lazy"
+				></Image>
+			</a>
+			)}
+
+			</div>
+		</nav>
+
+		<main class="mt-5 md:mt-0 absolute min-w-full z-10">
+			<div class="font-bold relative text-center pt-28">
+				<p class='text-6xl'>
+					<Clock client:load/>
+				</p>
+				<p class='mt-2 text-2xl'>
+					<CurrentDate client:load/>
+				</p>
+			</div>
+			<ul class="mt-24 flex flex-wrap justify-start w-screen md:w-5/12 mx-auto">
+					{drawerLinks.map((data) => 
+						<li class="min-w-[25%] max-w-[25%] rounded-xl hover:bg-slate-600/70 md:min-w-0 md:max-w-[112px]">
+							<a class="text-lg max-w-[21%] md:max-w-[112px] truncate" href={data.link}>
+								<Image
+									class="min-w-[75%] max-w-[75%] mx-[12.5%] md:w-20 md:w-100 md:w-100 md:h-100 rounded-2xl m-[2%] md:m-4"
+									src={data.img}
+									alt={data.name}
+									width={100}
+									height={100}
+									decoding="async"
+									loading="lazy"
+								></Image>
+								<p class="text-ellipsis font-bold overflow-hidden line-clamp-1 h-12 text-center m-1">{data.name}</p>
+							</a>
+						</li>
+					)}
+			</ul>
+		</main>
+
+		<Image
+		class="absoule z-0 min-w-full min-h-screen max-h-screen"
+		src={bg}
+		alt="Abstract Wallpaper"
+		decoding="async"
+		loading="lazy"
+		/>
+	</body>
+</html>
